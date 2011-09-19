@@ -2,6 +2,8 @@
 
     /* Config for server credentials. Copy to config.php (obviously) */
 
+    /*  SSH variables for the staging and production servers. */
+
     $staging_ssh_ip = '127.0.0.1';
     $staging_ssh_user = 'mysshuser';
     $staging_ssh_pass = 'mysshpass';
@@ -11,5 +13,16 @@
     $production_ssh_user = NULL;
     $production_ssh_pass = NULL;
     $production_ssh_port = 22;
+
+    /* MySQL variables for the staging and production servers. */
+
+    $staging_mysql_db = NULL;
+    $staging_mysql_user = NULL;
+    $staging_mysql_pass = NULL;
+
+    $production_mysql_db = NULL;
+    $production_mysql_user = NULL;
+    $production_mysql_pass = NULL;
+
 
 ?>
