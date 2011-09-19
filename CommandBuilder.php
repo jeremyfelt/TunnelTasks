@@ -42,6 +42,12 @@ class CommandBuilder {
 
     }
 
+    public function extract_tarball($file_name){
+        
+        $this->command_sequence .= 'tar -xvf ' . $file_name . ';';
+
+    }
+
     public function __destruct(){
 
         $this->command_sequence = NULL;
