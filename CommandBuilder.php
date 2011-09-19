@@ -36,6 +36,12 @@ class CommandBuilder {
 
     }
 
+    public function create_tarball($file_name){
+
+        $this->command_sequence .= 'tar --create --file=' . $file_name . ' *;';
+
+    }
+
     public function __destruct(){
 
         $this->command_sequence = NULL;
