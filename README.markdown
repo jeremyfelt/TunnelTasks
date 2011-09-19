@@ -7,5 +7,7 @@ This stuff definitely goes around plenty of security principles. If it's not ent
 ## Requirements
 
 Nothing solid yet, but...
+
 * You'll want at least 2 servers setup to test - one for production, one for staging.
+
 * PHP's Secure Shell2 (http://php.net/manual/en/book.ssh2.php) is required. So far no replacement on a Windows box.
