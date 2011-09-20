@@ -42,7 +42,7 @@ class CommandBuilder {
         if (!is_dir($new_directory)){
 
             $this->change_directory($new_directory);
-            $this->command_sequence .= "rm -fdr *"
+            $this->command_sequence .= "rm -fdr *";
 
         }
 
