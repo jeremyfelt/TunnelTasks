@@ -12,7 +12,7 @@ echo "\n\nAnd go!\n";
 /*  Build the file we want to pass back and forth. */
 $file_date = date('YmdHi');
 $production_mysql_file = $file_date . "_" . $production_mysql_db . ".sql";
-$example_sql_file = "db_example_setup.sql";
+$example_sql_file = $local_script_dir . 'db_example_setup.sql';
 
 /*  Build the command that we'll issue on the remote server. */
 
@@ -30,13 +30,14 @@ echo "Remote command sequence built. \n"; /* Feeling some fancy output on the co
 
 $local_command = new CommandBuilder();
 
+$local_command->clear_directory($staging_wp_dir);
 $local_command->import_database($production_mysql_db, $local_mysql_user, $local_mysql_pass, $example_sql_file);
-$local_command->change_directory($local_mysql_dir, 1);
+$local_command->change_directory($local_mysql_dir);
 $local_command->import_database($production_mysql_db, $production_mysql_user, $production_mysql_pass, $production_mysql_file);
 $local_command->move_file($file_date . '_wpdir.tar', $staging_wp_dir);
-$local_command->clear_directory($staging_wp_dir);
 $local_command->change_directory($staging_wp_dir);
 $local_command->extract_tarball($file_date . '_wpdir.tar');
+$local_command->remove_file($file_date . '_wpdir.tar');
 
 echo "Local command sequence built. \n";
 
