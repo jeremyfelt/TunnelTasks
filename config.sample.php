@@ -22,4 +22,31 @@
     $remote_wp_dir = "/var/www/wordpress/";
     $staging_wp_dir = NULL;
 
+    /*  Probably a better way to do this, but just in case. Who knows
+        what would happen without trailing slashes on the directories.  */
+
+    if(substr($local_mysql_dir,-1) != "/"){
+
+        $local_mysql_dir .= "/";
+
+    }
+
+    if(substr($production_mysql_dir, -1) != "/"){
+
+        $production_mysql_dir .= "/";
+
+    }
+
+    if(substr($remote_wp_dir, -1) != "/"){
+
+        $remote_wp_dir .= "/";
+
+    }
+
+    if(substr($staging_wp_dir, -1) != "/"){
+
+        $staging_wp_dir .= "/";
+
+    }
+
 ?>
