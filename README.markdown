@@ -38,4 +38,3 @@ You can now test if PHP recognizes it's new ssh2 extension by running:
 * php -m |grep ssh2
 
 It should return: 'ssh2'
---------
