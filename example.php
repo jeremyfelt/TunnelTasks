@@ -9,10 +9,11 @@ require ( 'CommandBuilder.php' ); /* adds change_directory, move_file, dump_data
 
 echo "\n\nAnd go!\n";
 
-/*  Build the file we want to pass back and forth. */
+/*  Build the files we want to pass back and forth until we have a better way. */
 $file_date = date('YmdHi');
 $production_mysql_file = $file_date . "_" . $production_mysql_db . ".sql";
 $example_sql_file = $local_script_dir . 'db_example_setup.sql';
+$wordpress_tar_file = $file_date . '_wpdir.tar';
 
 /*  Build the command that we'll issue on the remote server. */
 
@@ -22,7 +23,7 @@ $remote_command->change_directory($production_mysql_dir);
 $remote_command->dump_database($production_mysql_db, $production_mysql_user, $production_mysql_pass, $production_mysql_file);
 $remote_command->change_directory($remote_wp_dir);
 $remote_command->create_tarball($file_date . '_wpdir.tar');
-$remote_command->move_file($file_date . '_wpdir.tar', $production_mysql_dir);
+$remote_command->move_file($wordpress_tar_file, $production_mysql_dir);
 
 echo "Remote command sequence built. \n"; /* Feeling some fancy output on the command line for now. */
 
@@ -34,10 +35,10 @@ $local_command->clear_directory($staging_wp_dir);
 $local_command->import_database($production_mysql_db, $local_mysql_user, $local_mysql_pass, $example_sql_file);
 $local_command->change_directory($local_mysql_dir);
 $local_command->import_database($production_mysql_db, $production_mysql_user, $production_mysql_pass, $production_mysql_file);
-$local_command->move_file($file_date . '_wpdir.tar', $staging_wp_dir);
+$local_command->move_file($wordpress_tar_file, $staging_wp_dir);
 $local_command->change_directory($staging_wp_dir);
-$local_command->extract_tarball($file_date . '_wpdir.tar');
-$local_command->remove_file($file_date . '_wpdir.tar');
+$local_command->extract_tarball($wordpress_tar_file);
+$local_command->remove_file($wordpress_tar_file);
 
 echo "Local command sequence built. \n";
 
@@ -46,7 +47,7 @@ echo "Local command sequence built. \n";
 $remote_post_command = new CommandBuilder();
 
 $remote_post_command->change_directory($remote_wp_dir);
-$remote_post_command->remove_file($file_date . '_wpdir.tar');
+$remote_post_command->remove_file($wordpress_tar_file);
 
 /*  Open the SSH tunnel to the production server. */
 
@@ -65,7 +66,7 @@ $my_tunnel->grab_remote_file($production_mysql_dir . $production_mysql_file, $lo
 
 echo "Remote mysqldump file grabbed. \n";
 
-$my_tunnel->grab_remote_file($production_mysql_dir . $file_date . '_wpdir.tar', $local_mysql_dir . $file_date . '_wpdir.tar');
+$my_tunnel->grab_remote_file($production_mysql_dir . $wordpress_tar_file , $local_mysql_dir . $wordpress_tar_file);
 
 echo "Remote wordpress tarball grabbed. \n";
 
