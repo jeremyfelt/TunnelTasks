@@ -11,3 +11,14 @@ Nothing solid yet, but...
 * You'll want at least 2 servers setup to test - one for production, one for staging.
 
 * PHP's Secure Shell2 (http://php.net/manual/en/book.ssh2.php) is required. So far no replacement on a Windows box.
+
+## Get It Working Now
+
+* On 'production' server, download, extract latest version of WordPress
+* On 'production' server, create a database with credentials for WordPress
+* On 'production' server, install WordPress
+* On 'staging' server, create the web directory for staging
+* On 'staging' server, create a databse with same WordPress credentials
+* On 'staging' server, move config.php.sample to config.php, modify variables.
+* On 'staging' server, run example.php
+* Production WordPress install should now be available (barely) in the staging web directory.
