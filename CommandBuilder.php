@@ -16,6 +16,12 @@ class CommandBuilder {
 
     }
 
+    public function create_directory($new_directory){
+
+        $this->command_sequence .= 'mkdir ' . $new_directory . ';';
+
+    }
+
     public function move_file($file_name, $new_directory){
 
         $this->command_sequence .= 'mv ' . $file_name . ' ' . $new_directory . ';';
