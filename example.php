@@ -1,6 +1,12 @@
 <?php
 
-/*  Current example 'technically' works. Have noticed once where the entire .sql file didn't transfer from production to staging. */
+/*  Current example 'technically' works. 
+
+    Have noticed once where the entire .sql file didn't transfer from production to staging. 
+
+    No error checking.... careful.
+
+*/
 
 require ( 'config.php' );
 require ( 'TunnelConnect.php' );
