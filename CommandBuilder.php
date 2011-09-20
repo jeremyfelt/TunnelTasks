@@ -10,7 +10,17 @@ class CommandBuilder {
 
     }
 
-    public function change_directory($new_directory){
+    public function change_directory($new_directory, $create_if_needed = NULL){
+
+        if ($create_if_needed == 1){
+
+            if (!is_dir($new_directory)){
+
+                $this->create_directory($new_directory);
+
+            }
+
+        }
 
         $this->command_sequence .= 'cd ' . $new_directory . ';';
 
@@ -18,7 +28,11 @@ class CommandBuilder {
 
     public function create_directory($new_directory){
 
-        $this->command_sequence .= 'mkdir ' . $new_directory . ';';
+        if (!is_dir($new_directory)){
+
+            $this->command_sequence .= 'mkdir ' . $new_directory . ';';
+
+        }
 
     }
 
