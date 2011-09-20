@@ -32,6 +32,7 @@ $local_command = new CommandBuilder();
 $local_command->change_directory($local_mysql_dir);
 $local_command->import_database($production_mysql_db, $production_mysql_user, $production_mysql_pass, $production_mysql_file);
 $local_command->move_file($file_date . '_wpdir.tar', $staging_wp_dir);
+$local_command->clear_directory($staging_wp_dir);
 $local_command->change_directory($staging_wp_dir);
 $local_command->extract_tarball($file_date . '_wpdir.tar');
 
