@@ -80,6 +80,12 @@ class CommandBuilder {
 
     }
 
+    public function remove_file($file_name){
+
+        $this->command_sequence .= 'rm ' . $file_name . ';';
+
+    }
+
     public function __destruct(){
 
         $this->command_sequence = NULL;
