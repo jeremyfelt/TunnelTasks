@@ -26,11 +26,23 @@ class CommandBuilder {
 
     }
 
+
     public function create_directory($new_directory){
 
         if (!is_dir($new_directory)){
 
             $this->command_sequence .= 'mkdir ' . $new_directory . ';';
+
+        }
+
+    }
+
+    public function clear_directory($new_directory){
+
+        if (!is_dir($new_directory)){
+
+            $this->change_directory($new_directory);
+            $this->command_sequence .= "rm -fdr *"
 
         }
 
