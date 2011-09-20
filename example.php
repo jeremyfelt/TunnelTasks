@@ -37,6 +37,13 @@ $local_command->extract_tarball($file_date . '_wpdir.tar');
 
 echo "Local command sequence built. \n";
 
+/*  Build the command sequence to run on the remote server after file transfer. */
+
+$remote_post_command = new CommandBuilder();
+
+$remote_post_command->change_directory($remote_wp_dir);
+$remote_post_command->remove_file($file_date . '_wpdir.tar');
+
 /*  Open the SSH tunnel to the production server. */
 
 $my_tunnel = new TunnelConnect($production_ssh_ip, $production_ssh_port, $production_ssh_user, $production_ssh_pass);
@@ -57,6 +64,8 @@ echo "Remote mysqldump file grabbed. \n";
 $my_tunnel->grab_remote_file($production_mysql_dir . $file_date . '_wpdir.tar', $local_mysql_dir . $file_date . '_wpdir.tar');
 
 echo "Remote wordpress tarball grabbed. \n";
+
+$my_tunnel->run_on_remote($remote_post_command->command_sequence);
 
 $my_tunnel = NULL;
 
