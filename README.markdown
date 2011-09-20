@@ -22,3 +22,20 @@ Nothing solid yet, but...
 * On 'staging' server, move config.php.sample to config.php, modify variables.
 * On 'staging' server, run example.php
 * Production WordPress install should now be available (barely) in the staging web directory.
+
+## SSH2 Notes
+
+This article - http://kevin.vanzonneveld.net/techblog/article/make_ssh_connections_with_php/ - has a long list
+of PHP/SSH related stuff. The part that worked for me, thankfully, since I'm on Ubuntu is:
+
+---------
+On recent Ubuntu machines, there's no need to do any compiling anymore:
+
+* aptitude install libssh2-1-dev libssh2-php
+
+You can now test if PHP recognizes it's new ssh2 extension by running:
+
+* php -m |grep ssh2
+
+It should return: 'ssh2'
+--------
