@@ -17,6 +17,7 @@
     $local_mysql_user = NULL;
     $local_mysql_pass = NULL;
     $local_mysql_dir = "tmp/";
+    $local_script_dir = NULL;
 
     $remote_wp_dir = "/var/www/wordpress/";
     $staging_wp_dir = NULL;
